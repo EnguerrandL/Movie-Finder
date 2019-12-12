@@ -1,20 +1,6 @@
-<div id="discoverMovies" class="album py-5 bg-light">
-  <button v-on:click="dicoverMovies">Discover movie</button>
-        <div class="container">
-   <div class="row" v-for="discover in moviesDiscover.results">
-  
-     <movie-discover v-bind:movie="discover"></movie-discover>  
-          </div>
-        </div>
-      </div>
+<template>
 
-
-
-
-
-
-
-      <div class="col-md-4">
+     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
         <img class=""   v-bind:src="'https://image.tmdb.org/t/p/w200/'+ movie.poster_path"  v-bind:alt="movie.title">
         <div class="card-body">
@@ -26,6 +12,21 @@
         </div>
       </div>
       </div>
+ 
+</template>
 
 
 
+
+
+<script>
+    export default {
+        props:['movie'],
+        
+        mounted() {
+
+           
+            console.log('Component Movie-Discover mounted.')
+        }
+    }
+</script>
