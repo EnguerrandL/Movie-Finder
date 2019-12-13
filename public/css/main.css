@@ -1,0 +1,17 @@
+/* .test{
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+} */
+
+.card-body{
+    min-height: 20rem;
+    
+}
+
+img{
+    
+    /* margin-left: auto;
+   max-width: 30%;
+   max-height: 50%;
+   min-width: 30%;
+   min-height: 50%; */
+}

@@ -20,8 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
-Vue.component('movie-discover',require('./components/MovieDiscover.vue').default);
-Vue.component('movie-upcoming',require('./components/MovieUpcoming.vue').default);
+Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
+Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,58 +30,24 @@ Vue.component('movie-upcoming',require('./components/MovieUpcoming.vue').default
  */
 
 const app = new Vue({
-    el: '#app'
-  });
-
-const finder = new Vue({
-    el: '#movieFinder',
+    el: '#app',
+   
     data:{
-        searchKey:'',
-        moviesList:[]
-    },
-    methods:{
-        
-        searchMovies()
-        {   
-            
-            var url = 'https://api.themoviedb.org/3/search/movie?api_key=c6c6830bf220e88fe3aa7d26725e4184&query=' +this.searchKey;
-            fetch(url)
-            .then(response=>response.json())
-            .then(data=>{
-                this.moviesList=data;
-            })
-        }
-
-    }
-});
-
-const discover = new Vue({
-    el: '#discoverMovies',
-    data:{
-       
-        moviesDiscover:[],
-        
-    },
-    methods:{
-        
-        dicoverMovies: function()
-        {  
-            
-            var url = 'https://api.themoviedb.org/3/discover/movie?api_key=c6c6830bf220e88fe3aa7d26725e4184&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
-            fetch(url)
-            .then(response=>response.json())
-            .then(data=>{
-                this.moviesDiscover=data
-                return this.data
-            })
-        },
-        mounted () {
-            
-                this.dicoverMovies()
-                console.log('test')
-            
-          }
+      searchKey:'',
+      moviesFinded:[]
+  },
+  methods:{
+      
+      searchMovies()
+      {   
           
-    }
-     
-});
+          var url = 'https://api.themoviedb.org/3/search/movie?api_key=c6c6830bf220e88fe3aa7d26725e4184&query=' +this.searchKey;
+          fetch(url)
+          .then(response=>response.json())
+          .then(data=>{
+              this.moviesFinded=data;
+          })
+      }
+
+  }
+  });
