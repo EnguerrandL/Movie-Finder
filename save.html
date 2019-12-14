@@ -2,4 +2,28 @@ genre url :
 
 https://api.themoviedb.org/3/genre/movie/list?api_key=c6c6830bf220e88fe3aa7d26725e4184&language=en-US
 
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Movie Finder</a>
 
+
+    <input  v-if="transition" v-if="show" class=" form-control form-control-dark w-100"  v-model="searchKey" type="text" placeholder="Search a movie" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li  v-if="show" class=" nav-item text-nowrap">
+      <button  v-on:click="searchMovies" class="container btn-success">Search</button>
+      </li>
+    </ul>
+
+  </nav>
+
+
+
+
+  <div class="  card mb-4 box-shadow">
+    <img class="img-fluid"    v-bind:src="'https://image.tmdb.org/t/p/w200/'+ item.poster_path"  v-bind:alt="item.title">
+    <div class="card-body">
+      <h5 class="text-primary">Title : {{item.title}}</h5>
+      
+      <p class="card-text">{{item.overview.slice(0,250)+'...'}}</p>
+      </div>
+         <small class="text-primary ml-2 mb-2 ">Realase date : {{item.release_date}}</small>
+    </div>
