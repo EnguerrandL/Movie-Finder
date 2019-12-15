@@ -20,9 +20,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
+
+Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
 Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
 Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
-Vue.component('side-bar',require('./components/SideBar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,27 +31,8 @@ Vue.component('side-bar',require('./components/SideBar.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
+
 const app = new Vue({
     el: '#app',
-   
-    data:{
-      searchKey:'',
-      moviesFinded:[],
-     
-  },
-  methods:{
-      
-      searchMovies()
-      {   
-          
-          var url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` +this.searchKey;
-          fetch(url)
-          .then(response=>response.json())
-          .then(data=>{
-              this.moviesFinded=data
-            
-          })
-      }
-
-  }
+  
   });

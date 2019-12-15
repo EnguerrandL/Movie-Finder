@@ -2,6 +2,8 @@ genre url :
 
 https://api.themoviedb.org/3/genre/movie/list?api_key=c6c6830bf220e88fe3aa7d26725e4184&language=en-US
 
+https://api.themoviedb.org/3/discover/movie?api_key=c6c6830bf220e88fe3aa7d26725e4184&page=1&with_genres=27
+
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Movie Finder</a>
 
@@ -27,3 +29,49 @@ https://api.themoviedb.org/3/genre/movie/list?api_key=c6c6830bf220e88fe3aa7d2672
       </div>
          <small class="text-primary ml-2 mb-2 ">Realase date : {{item.release_date}}</small>
     </div>
+
+
+
+
+
+       
+    data:{
+      searchKey:'',
+      moviesFinded:[],
+     
+  },
+  methods:{
+      
+      searchMovies()
+      {   
+          
+          var url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` +this.searchKey;
+          fetch(url)
+          .then(response=>response.json())
+          .then(data=>{
+              this.moviesFinded=data
+            
+          })
+      }
+
+  }
+
+
+  <div class="row"  v-for="finder in moviesFinded.results" >
+    <movie-finder v-bind:movie="finder"></movie-finder>  
+        </div>
+           
+
+
+
+        <div v-for="finder in moviesFinded.results.slice(0, 12)" class="col-md-3">
+          <div  class="  card mb-4 box-shadow">
+           
+            <img class="img-fluid"   v-bind:src="'https://image.tmdb.org/t/p/w200/'+ finder.poster_path"  v-bind:alt="finder.title">
+            
+
+           
+            </div>
+
+
+        </div>
