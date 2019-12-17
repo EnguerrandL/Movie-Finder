@@ -1,18 +1,22 @@
 
 <template>
 
-<div class="col-2  ml-3 py-5 float-right">
+<div class="col-2   py-5 float-right">
       
         
         <h5 class=" text-center text-primary">Trending Movies</h5>
          
       <ul class=" list-group list-group-flush">
-            <div v-for="item in trendingMovies.results.slice(0, 5)" class="list-group-item ">
+            <div v-for="item in trendingMovies.results" class="list-group-item ">
           
-  <a  href="item."  class="list-group-item list-group-item-action list-group-item-primary">{{item.title}}</a>
+ 
+<p v-if="item.title"  class="list-group-item list-group-item-action list-group-item-primary">{{item.title}}</p>
+<p v-if="!item.title"  class="text-danger list-group-item list-group-item-action list-group-item-primary">Error data missing ! </p>
+
 
 
               </div>
+
               </ul>
         
          
@@ -33,12 +37,15 @@
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
 export default {
-  props:['movie'],
+ 
   data() {
     return {
-     
+      
+    
+
+
       trendingMovies: [],
-     
+
 
     };
   },
@@ -46,6 +53,11 @@ export default {
     this.fetchTrendingMovies();
   },
   methods: {
+
+ 
+
+
+
     fetchTrendingMovies(page_url) {
      
        var url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;

@@ -1,16 +1,17 @@
 <template>
 
- <div>
+
    
     
-        <div class=" test container">
+        <div  class="container">
         <h1 class="mb-3 text-center text-primary">Movies Ideas</h1>
           <div class=" row">
       
-            <div v-for="item in ideasMovies.results.slice(4, 16)" class="col-md-3">
+            <div :key="item.id" v-for="item in ideasMovies.results" class="col-md-3">
               <div  class="  card mb-4 box-shadow">
                
-                <img class="img-fluid"   v-bind:src="'https://image.tmdb.org/t/p/w200/'+ item.poster_path"  v-bind:alt="item.title">
+                <img class="img-fluid" v-if="item.poster_path"   v-bind:src="'https://image.tmdb.org/t/p/w200/'+ item.poster_path"  v-bind:alt="item.title">
+                <img class="img-fluid"   v-if="!item.poster_path" src="https://via.placeholder.com/200x300"  v-bind:alt="item.title">
                 
                    
                   <button type="button" class="btn btn-primary" data-toggle="modal" v-bind:data-target="'#exampleModal' + item.id">
@@ -24,15 +25,22 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"> {{item.title}}</h5>
+        <h5 class="modal-title text-info" id="exampleModalLongTitle"> {{item.title || item.original_title || 'Missing data.... Sorry!'}}</h5>
+       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+      
       </div>
+         <p class="text-success cml-2 text-center">Vote : {{item.vote_average || 'Missing data.... Sorry!'}}/10</p>
       <div class="modal-body">
-       {{item.overview}}
+       {{item.overview || 'Missing data.... Sorry!'}}
       </div>
+
+      <small class="ml-2">Release date : {{item.release_date || 'Missing data.... Sorry!'}}</small>
+      
       <div class="modal-footer">
+        
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -47,7 +55,7 @@
             </div>
           </div>
        
-      </div>
+  
 
 
  
@@ -59,9 +67,10 @@
 <script>
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
+import MovieFinder from './MovieFinder';
 
 export default {
-  props:['movie', 'results'],
+
   data() {
     return {
  

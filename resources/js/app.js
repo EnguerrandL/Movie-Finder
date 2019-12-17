@@ -19,12 +19,14 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('movie-sidenav',require('./components/SideNav.vue').default);
+Vue.component('movie-app',require('./components/App.vue').default);
+Vue.component('template-app',require('./components/AppTemplate.vue').default);
+Vue.component('showidea-app',require('./components/ShowIdea.vue').default);
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
-
-Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
 Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
-Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
-
+// Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
+// Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32,7 +34,12 @@ Vue.component('movie-trending',require('./components/MovieTrending.vue').default
  */
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
+import ShowIdea from './components/ShowIdea.vue';
+import App from './components/App.vue';
+import router from 'vue-router';
+
 const app = new Vue({
-    el: '#app',
-  
-  });
+   
+    render: h => h(App),
+    router
+  }).$mount('#app');

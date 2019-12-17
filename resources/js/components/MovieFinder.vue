@@ -1,31 +1,44 @@
 <template>
 
-
-        
+    <div  class="col-12 container">
   
-                      
-                      
-                        
-                
-        <div>   
-               <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      
+         <nav   class="mx-auto col-6 navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Movie Finder</a>
  
 
     <input   class=" form-control form-control-dark w-100"   v-model="searchKey" type="text" placeholder="Search a movie" aria-label="Search">
     <ul class="navbar-nav px-3">
       <li   class=" nav-item text-nowrap">
-      <button  v-on:click="searchMovies" class="container btn-success">Search</button>
+      <button  v-on:click="searchMovies " class="container btn-success">Search</button>
       </li>
     </ul>
 
   </nav>
-
-    <div class="mt-3 container">
+   
+    
       
-          <div class="row">
+    
 
-  <div class="col-md-3"  v-for="finder in moviesFinded.results" >
+
+       
+
+
+<div  class="container">
+       
+  
+        <div class="mx-auto mt-3 row">
+  
+
+
+
+<div class=" row">
+  
+    
+  <div class="col-md-3" :key="finder.id" v-for="finder in moviesFinded.results" >
+
+  
+
   <div  class="card mb-4 box-shadow">
     
       <img class="img-fluid"   v-if="finder.poster_path" v-bind:src="'https://image.tmdb.org/t/p/w200/'+ finder.poster_path"  v-bind:alt="finder.title">
@@ -41,14 +54,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"> {{finder.title}}</h5>
+        <h5 class="text-info modal-title" id="exampleModalLongTitle"> {{finder.title || finder.original_title || 'Missing data.... Sorry!'}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-       {{finder.overview}}
+       <p class="text-success cml-2 text-center">Vote : {{finder.vote_average  || 'Missing data.... Sorry!'}}/10</p>
+      <div  v-if="finder.overview" class="modal-body">
+       {{finder.overview || 'Missing data.... Sorry!'}}
       </div>
+        <small class="ml-2">Release date : {{finder.release_date || 'Missing data.... Sorry!'}}</small>
+   
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
@@ -57,6 +73,7 @@
 </div>
 
   
+    </div>
     </div>
     </div>
     </div>
@@ -77,44 +94,87 @@
 
 <script>
 
+import SideNav from './SideNav';
 
 
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
 
 export default {
-   props:['movie'],
+  name: 'app',
+
+  components: {
+    SideNav,
+  },
+
   data() {
     return {
 
+      displaySearch: false,
+      displayMovieIdea: true,
+      displayTopRatedMovie: false,
+      displayShowIdea: false,
+      displayTopRatedShow: false,
+
       searchKey:'',
       moviesFinded:[],
-
     };
   },
   created() {
+    this.searchMovies();
     
-    
-   
   },
   methods: {
-    searchMovies (page_url) {
-     
-       var url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` +this.searchKey;
+
+
+        showSearch() {
+      this.displaySearch = true;
+      this.displayMovieIdea = false;
+      this.displayTopRatedMovie = false;
+      this.displayShowIdea = false;
+      this.displayTopRatedShow = false;
+    },
+    showMovieIdea() {
+      this.displaySearch = false;
+      this.displayMovieIdea = true;
+      this.displayTopRatedMovie = false;
+      this.displayShowIdea = false;
+      this.displayTopRatedShow = false;
+    },
+    showTopRatedMovie() {
+       this.displaySearch = false;
+      this.displayMovieIdea = false;
+      this.displayTopRatedMovie = true;
+      this.displayShowIdea = false;
+      this.displayTopRatedShow = false;
+    },
+    showShowIdea() {
+      this.displaySearch = false;
+      this.displayMovieIdea = false;
+      this.displayTopRatedMovie = false;
+      this.displayShowIdea = true;
+      this.displayTopRatedShow = false;
+    },
+    showTopRatedShow() {
+       this.displaySearch = false;
+      this.displayMovieIdea = false;
+      this.displayTopRatedMovie = false;
+      this.displayShowIdea = false;
+      this.displayTopRatedShow = true;
+    },
+
+    searchMovies (page_url) { 
+     var url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` +this.searchKey;
      fetch(url)
             .then(response=>response.json())
             .then(data=>{
+              
                 this.moviesFinded=data
-                return this.data
             })
             
         .catch(err => console.log(err));
     },
-
-    
-       mounted() {
-         
-         
+       mounted() {    
             console.log('Component Movie-finded mounted.')
         }
 

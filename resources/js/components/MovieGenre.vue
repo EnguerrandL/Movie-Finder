@@ -1,9 +1,9 @@
 <template>
-<div class="d-flex  ml-3 py-5 float-left list-group">
+<div class=" ml-3 py-5 float-left list-group">
   <a class="list-group-item list-group-item-action active">
   Find movies ideas by genre
   </a>
-  <a href="#" v-for="item in moviesGenre.genres" v-bind:id="item.id" class=" list-group-item list-group-item-action">{{ item.name }}</a>
+  <a href="#"    v-for="item in moviesGenre.genres" v-bind:id="item.id" class=" list-group-item list-group-item-action">{{ item.name }}</a>
  
 
 </div>
@@ -15,7 +15,7 @@
 
 
 <script>
-import MovieIdea from './MovieIdea'
+
 
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
@@ -24,13 +24,15 @@ export default {
  
   data() {
     return {
-     
+      
       moviesGenre: [],
+      id: '',
 
     };
   },
   created() {
     this.fetchMovieGenre();
+    
     
    
   },
@@ -46,6 +48,7 @@ export default {
             })
         .catch(err => console.log(err));
     },
+  
 
     
        mounted() {
