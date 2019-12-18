@@ -3,7 +3,7 @@
     <div  class="col-12 container">
   
       
-         <nav   class="mx-auto col-6 navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+         <nav   class="mt-5 mx-auto col-6 navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Movie Finder</a>
  
 
@@ -95,7 +95,7 @@
 <script>
 
 import SideNav from './SideNav';
-
+import AppTemplate from './AppTemplate'
 
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
@@ -109,13 +109,6 @@ export default {
 
   data() {
     return {
-
-      displaySearch: false,
-      displayMovieIdea: true,
-      displayTopRatedMovie: false,
-      displayShowIdea: false,
-      displayTopRatedShow: false,
-
       searchKey:'',
       moviesFinded:[],
     };
@@ -126,42 +119,6 @@ export default {
   },
   methods: {
 
-
-        showSearch() {
-      this.displaySearch = true;
-      this.displayMovieIdea = false;
-      this.displayTopRatedMovie = false;
-      this.displayShowIdea = false;
-      this.displayTopRatedShow = false;
-    },
-    showMovieIdea() {
-      this.displaySearch = false;
-      this.displayMovieIdea = true;
-      this.displayTopRatedMovie = false;
-      this.displayShowIdea = false;
-      this.displayTopRatedShow = false;
-    },
-    showTopRatedMovie() {
-       this.displaySearch = false;
-      this.displayMovieIdea = false;
-      this.displayTopRatedMovie = true;
-      this.displayShowIdea = false;
-      this.displayTopRatedShow = false;
-    },
-    showShowIdea() {
-      this.displaySearch = false;
-      this.displayMovieIdea = false;
-      this.displayTopRatedMovie = false;
-      this.displayShowIdea = true;
-      this.displayTopRatedShow = false;
-    },
-    showTopRatedShow() {
-       this.displaySearch = false;
-      this.displayMovieIdea = false;
-      this.displayTopRatedMovie = false;
-      this.displayShowIdea = false;
-      this.displayTopRatedShow = true;
-    },
 
     searchMovies (page_url) { 
      var url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=` +this.searchKey;

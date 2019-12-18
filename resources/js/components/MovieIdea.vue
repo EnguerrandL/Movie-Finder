@@ -25,19 +25,22 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLongTitle"> {{item.title || item.original_title || 'Missing data.... Sorry!'}}</h5>
+        <h5   class="modal-title text-info" id="exampleModalLongTitle"> {{item.title || item.original_title || 'Oops, missing data.... Sorry!'}}</h5>
        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       
       </div>
-         <p class="text-success cml-2 text-center">Vote : {{item.vote_average || 'Missing data.... Sorry!'}}/10</p>
+    <div class="progress">
+  <div class="progress-bar bg-success" role="progressbar" v-bind:style="'width:' + item.vote_average * 10 + '%' " aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Rating : {{item.vote_average * 10}} /100</div>
+</div>
+
       <div class="modal-body">
-       {{item.overview || 'Missing data.... Sorry!'}}
+       {{item.overview || 'Oops, missing data.... Sorry!'}}
       </div>
 
-      <small class="ml-2">Release date : {{item.release_date || 'Missing data.... Sorry!'}}</small>
+      <small class="ml-2">Release date : {{item.release_date || 'Oops, missing data.... Sorry!'}}</small>
       
       <div class="modal-footer">
         
@@ -85,7 +88,7 @@ export default {
   methods: {
     fetchIdeasMovie(page_url) {
      
-       var url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=revenue.desc&include_adult=false&include_video=true&page=1`;
+       var url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
      fetch(url)
             .then(response=>response.json())
             .then(data=>{

@@ -1,9 +1,8 @@
 <template>
 
 <div>
-
-<movie-finder></movie-finder>
-<movie-idea></movie-idea>
+  <movie-sidenav></movie-sidenav>
+  <router-view></router-view>
 
 
 </div>
@@ -15,9 +14,9 @@
 
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
-import ShowIdea from './ShowIdea';
+
 import SideNav from './SideNav';
-import MovieFinder from './MovieFinder';
+
 
 export default {
  name: 'App',

@@ -18,13 +18,13 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('movie-sidenav',require('./components/SideNav.vue').default);
-Vue.component('movie-app',require('./components/App.vue').default);
 Vue.component('template-app',require('./components/AppTemplate.vue').default);
+Vue.component('movie-app',require('./components/App.vue').default);
+Vue.component('movie-sidenav',require('./components/SideNav.vue').default);
+Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
 Vue.component('showidea-app',require('./components/ShowIdea.vue').default);
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
-Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
+
 // Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
 // Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
 /**
@@ -32,14 +32,16 @@ Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
-import ShowIdea from './components/ShowIdea.vue';
 import App from './components/App.vue';
-import router from 'vue-router';
+import router from './router';
+import Vuetify from 'vuetify';
+
+Vue.use(Vuetify)
 
 const app = new Vue({
    
     render: h => h(App),
-    router
+    router: router,
+    vuetify: new Vuetify(),
   }).$mount('#app');

@@ -143,3 +143,24 @@ https://api.themoviedb.org/3/discover/movie?api_key=c6c6830bf220e88fe3aa7d26725e
         </ul>
               
       </div>
+
+
+
+
+      
+<div class="fixed-top sidebar-container">
+  <div class="sidebar-logo">
+    Movie Finder
+  </div>
+  <ul class="sidebar-navigation">
+   <li class="header">Navigation</li>
+       <li  v-for="link in links" :key="link.route" link :to="link.route" exact="true">
+      <a v-bind:href="link.route">
+        <i class="fa fa-info-circle" aria-hidden="true"></i> {{link.text}}
+      </a>
+    </li>
+  </ul>
+
+    
+        
+</div>

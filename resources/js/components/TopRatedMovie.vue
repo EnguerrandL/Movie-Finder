@@ -4,10 +4,10 @@
    
     
         <div  class="container">
-        <h1 class="mb-3 text-center text-primary">Shows Ideas</h1>
+        <h1 class="mb-3 text-center text-primary">Top rated Movies</h1>
           <div class=" row">
       
-            <div :key="item.id" v-for="item in ideasShow.results" class="col-md-3">
+            <div :key="item.id" v-for="item in topRatedMovies.results" class="col-md-3">
               <div  class="  card mb-4 box-shadow">
                
                 <img class="img-fluid" v-if="item.poster_path"   v-bind:src="'https://image.tmdb.org/t/p/w200/'+ item.poster_path"  v-bind:alt="item.title">
@@ -15,7 +15,7 @@
                 
                    
                   <button type="button" class="btn btn-primary" data-toggle="modal" v-bind:data-target="'#exampleModal' + item.id">
- {{item.name || item.original_name || 'Missing data.... Sorry!'}}
+ {{item.title}}
 </button>
                
                 </div>
@@ -25,10 +25,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalLongTitle"> {{item.name || item.original_name || 'Missing data.... Sorry!'}}</h5>
+        <h5 class="modal-title text-info" id="exampleModalLongTitle"> {{item.title || item.original_title || 'Missing data.... Sorry!'}}</h5>
        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      
           <span aria-hidden="true">&times;</span>
         </button>
       
@@ -38,7 +37,7 @@
        {{item.overview || 'Missing data.... Sorry!'}}
       </div>
 
-      <small class="ml-2">Release date : {{item.first_air_date || 'Missing data.... Sorry!'}}</small>
+      <small class="ml-2">Release date : {{item.release_date || 'Missing data.... Sorry!'}}</small>
       
       <div class="modal-footer">
         
@@ -59,23 +58,23 @@
   
 
 
-
+ 
 </template>
 
+
+
+
 <script>
-
-
-
 const API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
+import MovieFinder from './MovieFinder';
 
 export default {
-  name: 'app',
 
   data() {
     return {
  
-      ideasShow: [],
+      topRatedMovies: [],
 
     };
   },
@@ -86,11 +85,11 @@ export default {
   methods: {
     fetchIdeasMovie(page_url) {
      
-       var url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`;
+       var url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
      fetch(url)
             .then(response=>response.json())
             .then(data=>{
-                this.ideasShow=data
+                this.topRatedMovies=data
                
                 return this.data
                 
@@ -107,8 +106,6 @@ export default {
         }
 
   }
-
-
 
 
 

@@ -1,14 +1,17 @@
-  import Vue from 'vue'
+import Vue from 'vue'
 import Router from 'vue-router'
 import App from './components/App.vue'
 import ShowIdea from './components/ShowIdea.vue';
 import MovieFinder from './components/MovieFinder.vue';
+import MovieIdea from './components/MovieIdea.vue';
+import TopRatedMovie from './components/TopRatedMovie.vue';
+import TopRatedShow from './components/TopRatedShow.vue';
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-
+ 
   routes: [
     {
       path: '/',
@@ -16,7 +19,7 @@ export default new Router({
       component: App
     },
     {
-      path: '/s',
+      path: '/search',
       name: 'search',
       component: MovieFinder
     },
