@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Movie-Finder
+=======
+# Movie-Finder App 
+>>>>>>> 3fb47488e18d2351fd4633cd1da3dc4abe393e52
 
 
 ### Welcome to the movies finder app ! 
