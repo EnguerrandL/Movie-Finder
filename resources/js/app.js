@@ -20,7 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('template-app',require('./components/AppTemplate.vue').default);
 Vue.component('movie-app',require('./components/App.vue').default);
-Vue.component('movie-sidenav',require('./components/SideNav.vue').default);
+Vue.component('home-app',require('./components/Home.vue').default);
+Vue.component('app-navmenu',require('./components/NavMenu.vue').default);
 Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
 Vue.component('showidea-app',require('./components/ShowIdea.vue').default);
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
@@ -35,13 +36,9 @@ Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
 
 import App from './components/App.vue';
 import router from './router';
-import Vuetify from 'vuetify';
-
-Vue.use(Vuetify)
 
 const app = new Vue({
    
     render: h => h(App),
     router: router,
-    vuetify: new Vuetify(),
   }).$mount('#app');

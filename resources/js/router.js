@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from './components/App.vue'
+import Home from './components/Home.vue'
 import ShowIdea from './components/ShowIdea.vue';
 import MovieFinder from './components/MovieFinder.vue';
 import MovieIdea from './components/MovieIdea.vue';
@@ -16,7 +16,7 @@ export default new Router({
     {
       path: '/',
       name: 'app',
-      component: App
+      component: Home
     },
     {
       path: '/search',

@@ -3,13 +3,16 @@
 
   
 
-  <div class="">
+  <div>
   
     <nav   class="navbar navbar-expand-lg navbar navbar-dark bg-primary ">
-      <a  v-for="link in links" :key="link.route" link :to="link.route" exact="true" class="navbar-brand" v-bind:href="link.route">{{link.text}}</a>
+      
+      <a v-for="link in links" :key="link.route"   class="navbar-brand" v-bind:href="link.route">{{link.text}}</a>
+      
+
     </nav>
 
- 
+  
           
   </div>
 
