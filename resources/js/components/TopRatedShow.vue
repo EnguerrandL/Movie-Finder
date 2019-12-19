@@ -31,7 +31,7 @@ export default {
   methods: {
     fetchIdeasMovie(page_url) {
      
-       var url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`+  "&language=en-US&page=" + this.page;
+       var url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`;
     fetch(url)
             .then(response=>response.json())
             .then(data=>{

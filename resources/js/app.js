@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 Vue.component('template-app',require('./components/AppTemplate.vue').default);
 Vue.component('movie-app',require('./components/App.vue').default);
 Vue.component('home-app',require('./components/Home.vue').default);
@@ -26,8 +27,6 @@ Vue.component('movie-idea',require('./components/MovieIdea.vue').default);
 Vue.component('showidea-app',require('./components/ShowIdea.vue').default);
 Vue.component('movie-finder',require('./components/MovieFinder.vue').default);
 
-// Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
-// Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -38,7 +37,6 @@ import App from './components/App.vue';
 import router from './router';
 
 const app = new Vue({
-   
     render: h => h(App),
     router: router,
   }).$mount('#app');

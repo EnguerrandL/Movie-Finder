@@ -1846,11 +1846,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -1941,17 +1936,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -1966,6 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AppTemplate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppTemplate */ "./resources/js/components/AppTemplate.vue");
+//
 //
 //
 //
@@ -2060,7 +2045,7 @@ var API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
     fetchIdeasMovie: function fetchIdeasMovie(page_url) {
       var _this = this;
 
-      var url = "https://api.themoviedb.org/3/trending/all/day?api_key=".concat(API_KEY);
+      var url = "https://api.themoviedb.org/3/discover/movie?api_key=".concat(API_KEY);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
@@ -2088,23 +2073,6 @@ var API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2291,7 +2259,7 @@ var API_KEY = 'c6c6830bf220e88fe3aa7d26725e4184';
     fetchIdeasMovie: function fetchIdeasMovie(page_url) {
       var _this = this;
 
-      var url = "https://api.themoviedb.org/3/tv/top_rated?api_key=".concat(API_KEY) + "&language=en-US&page=" + this.page;
+      var url = "https://api.themoviedb.org/3/tv/top_rated?api_key=".concat(API_KEY);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
@@ -37707,22 +37675,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("app-navmenu"),
-      _vm._v(" "),
-      _c(
-        "transition",
-        {
-          attrs: { "enter-active-class": "animated fadeInDown", name: "fade" }
-        },
-        [_c("router-view")],
-        1
-      )
-    ],
-    1
-  )
+  return _c("div", [_c("app-navmenu"), _vm._v(" "), _c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37747,7 +37700,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", { staticClass: "mb-3 text-center " }, [
+    _c("h1", { staticClass: "text-white font-italic mb-3 text-center " }, [
       _vm._v(_vm._s(_vm.pageTitle))
     ]),
     _vm._v(" "),
@@ -37756,7 +37709,7 @@ var render = function() {
       { staticClass: " row" },
       _vm._l(_vm.movies.results, function(movie) {
         return _c("div", { key: movie.id, staticClass: "col-md-3" }, [
-          _c("div", { staticClass: "  card mb-4 box-shadow" }, [
+          _c("div", { staticClass: "cardEffect  card mb-4 box-shadow" }, [
             movie.poster_path
               ? _c("img", {
                   staticClass: "img-fluid",
@@ -37834,34 +37787,36 @@ var render = function() {
                       _vm._m(0, true)
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "ml-2 mr-2 progress" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: " progress-bar bg-success",
-                          style: "width:" + movie.vote_average * 10 + "%",
-                          attrs: {
-                            role: "progressbar",
-                            "aria-valuenow": "75",
-                            "aria-valuemin": "0",
-                            "aria-valuemax": "100"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "Rating : " +
-                              _vm._s(movie.vote_average * 10) +
-                              " /100"
+                    movie.vote_average
+                      ? _c("div", { staticClass: "ml-2 mr-2 progress" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: " progress-bar bg-success",
+                              style: "width:" + movie.vote_average * 10 + "%",
+                              attrs: {
+                                role: "progressbar",
+                                "aria-valuenow": "75",
+                                "aria-valuemin": "0",
+                                "aria-valuemax": "100"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "Rating : " +
+                                  _vm._s(movie.vote_average * 10) +
+                                  " /100\r\n                        "
+                              )
+                            ]
                           )
-                        ]
-                      )
-                    ]),
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _vm._v(
-                        "\r\n            " +
+                        "\r\n                    " +
                           _vm._s(movie.overview || "Oops...no data") +
-                          "\r\n            "
+                          "\r\n                  "
                       )
                     ]),
                     _vm._v(" "),
@@ -37896,7 +37851,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "close",
+        staticClass: "close ",
         attrs: {
           type: "button",
           "data-dismiss": "modal",
@@ -37914,7 +37869,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn btn-primary",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
         [_vm._v("Close")]
@@ -37951,17 +37906,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", { staticClass: "ml-2 display-4 font-italic" }, [
-        _vm._v("Welcome ")
-      ]),
-      _vm._v(" "),
-      _c("h4", { staticClass: "ml-2 display-4 font-italic" }, [
-        _vm._v("To The Movies Finder ")
-      ]),
+      _c(
+        "h1",
+        { staticClass: "mr-3 text-white display-4 font-italic float-right" },
+        [_vm._v("Welcome To The Movies Finder ")]
+      ),
       _vm._v(" "),
       _c("img", {
         staticClass: "img-fluid",
-        attrs: { id: "homePic", src: __webpack_require__(/*! ../../assets/home.jpg */ "./resources/assets/home.jpg"), alt: "" }
+        attrs: { src: __webpack_require__(/*! ../../assets/welcomeshrek.jpg */ "./resources/assets/welcomeshrek.jpg"), alt: "" }
       })
     ])
   }
@@ -38111,24 +38064,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar navbar-dark bg-primary " },
-      _vm._l(_vm.links, function(link) {
-        return _c(
-          "a",
-          {
-            key: link.route,
-            staticClass: "navbar-brand",
-            attrs: { href: link.route }
-          },
-          [_vm._v(_vm._s(link.text))]
-        )
-      }),
-      0
-    )
-  ])
+  return _c(
+    "nav",
+    { staticClass: "navbar navbar-expand-lg navbar navbar-dark bg-dark " },
+    _vm._l(_vm.links, function(link) {
+      return _c(
+        "a",
+        {
+          key: link.route,
+          staticClass: " navbar-brand",
+          attrs: { id: "aLinksHover", href: link.route }
+        },
+        [_vm._v(_vm._s(link.text))]
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53279,14 +53230,14 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/home.jpg":
-/*!***********************************!*\
-  !*** ./resources/assets/home.jpg ***!
-  \***********************************/
+/***/ "./resources/assets/welcomeshrek.jpg":
+/*!*******************************************!*\
+  !*** ./resources/assets/welcomeshrek.jpg ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/home.jpg?36432ea622a3890edef4c2066179f3dc";
+module.exports = "/images/welcomeshrek.jpg?36432ea622a3890edef4c2066179f3dc";
 
 /***/ }),
 
@@ -53325,9 +53276,7 @@ Vue.component('home-app', __webpack_require__(/*! ./components/Home.vue */ "./re
 Vue.component('app-navmenu', __webpack_require__(/*! ./components/NavMenu.vue */ "./resources/js/components/NavMenu.vue")["default"]);
 Vue.component('movie-idea', __webpack_require__(/*! ./components/MovieIdea.vue */ "./resources/js/components/MovieIdea.vue")["default"]);
 Vue.component('showidea-app', __webpack_require__(/*! ./components/ShowIdea.vue */ "./resources/js/components/ShowIdea.vue")["default"]);
-Vue.component('movie-finder', __webpack_require__(/*! ./components/MovieFinder.vue */ "./resources/js/components/MovieFinder.vue")["default"]); // Vue.component('movie-trending',require('./components/MovieTrending.vue').default);
-// Vue.component('movie-genre',require('./components/MovieGenre.vue').default);
-
+Vue.component('movie-finder', __webpack_require__(/*! ./components/MovieFinder.vue */ "./resources/js/components/MovieFinder.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

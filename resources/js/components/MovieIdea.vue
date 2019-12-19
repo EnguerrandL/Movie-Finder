@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     fetchIdeasMovie(page_url) {   
-    var url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+    var url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
     fetch(url)
             .then(response=>response.json())
             .then(data=>{
