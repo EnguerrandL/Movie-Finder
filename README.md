@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# Movie-Finder
-=======
->>>>>>> 74e0bda2a9dc480cdf56b6a996fd96b7696df044
-
-
 
 # Movie-Finder App 
 
