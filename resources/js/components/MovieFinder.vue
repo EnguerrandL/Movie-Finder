@@ -2,11 +2,11 @@
 <!-- Input finder used for searching movies... -->
   <div  class="col-12 container">   
     <nav   class="mt-3 mx-auto col-6 navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Movie Finder</a>
+      <a class="text-center navbar-brand col-sm-3 col-md-2 mr-0" href="#">Finder</a>
         <input   class=" form-control form-control-dark w-100"   v-model="searchKey" type="text" placeholder="Search a movie" aria-label="Search">
-      <ul class="navbar-nav px-3">
+      <ul class="mx-auto navbar-nav px-3">
         <li   class=" nav-item text-nowrap">
-          <button  v-on:click="searchMovies" class="container btn-success">Search</button>
+          <button  v-on:click="searchMovies" class="btn btn-success">Search</button>
         </li>
       </ul>
     </nav>

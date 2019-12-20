@@ -1,4 +1,5 @@
 <template>
+<main>
 <div  class="container">
 
   <!-- Main title for each page -->
@@ -7,7 +8,7 @@
       <div   v-for="movie in movies.results" :key="movie.id" class="col-md-3">
         <div  class="cardEffect  card mb-4 box-shadow">  
           <img class="img-fluid" v-if="movie.poster_path"   v-bind:src="picUrl + movie.poster_path"  v-bind:alt="movie.title">
-          <img class="img-fluid"   v-if="!movie.poster_path" src="https://via.placeholder.com/200x300"  v-bind:alt="movie.title">  
+          <img id="noDataPic" class="img-fluid"   v-if="!movie.poster_path" src="../../assets/nodatapic.png"   v-bind:alt="movie.title">  
 
           <button type="button" class="btn btn-success" data-toggle="modal" v-bind:data-target="'#exampleModal' + movie.id">
           {{movie.title || movie.original_title || movie.name || movie.original_name || 'Oops...no data' }}
@@ -19,7 +20,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle"> {{movie.title || movie.name}}</h5>
+              <h5 class="font-weight-bold modal-title" id="exampleModalLongTitle"> {{movie.title || movie.name}}</h5>
                 <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -29,9 +30,9 @@
                         </div>
                     </div>
                   <div class="modal-body">
-                    {{movie.overview || 'Oops...no data'}}
+                    {{movie.overview || 'Oops...data not found !'}}
                   </div>
-                <small class="ml-2">Release date : {{movie.release_date || movie.first_air_date || 'Oops...no data'}}</small>
+                <small class="mr-2 text-right font-weight-bold">Release date : {{movie.release_date || movie.first_air_date || 'Oops...no data'}}</small>
               <div class="modal-footer">     
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
@@ -41,6 +42,7 @@
     </div>
   </div>
 </div>
+</main>
 </template>
 
 <script>

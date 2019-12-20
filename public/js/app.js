@@ -1910,6 +1910,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["movies", "pageTitle", "picUrl"],
   data: function data() {
@@ -37699,148 +37701,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", { staticClass: "text-white font-italic mb-3 text-center " }, [
-      _vm._v(_vm._s(_vm.pageTitle))
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: " row" },
-      _vm._l(_vm.movies.results, function(movie) {
-        return _c("div", { key: movie.id, staticClass: "col-md-3" }, [
-          _c("div", { staticClass: "cardEffect  card mb-4 box-shadow" }, [
-            movie.poster_path
-              ? _c("img", {
-                  staticClass: "img-fluid",
+  return _c("main", [
+    _c("div", { staticClass: "container" }, [
+      _c("h1", { staticClass: "text-white font-italic mb-3 text-center " }, [
+        _vm._v(_vm._s(_vm.pageTitle))
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: " row" },
+        _vm._l(_vm.movies.results, function(movie) {
+          return _c("div", { key: movie.id, staticClass: "col-md-3" }, [
+            _c("div", { staticClass: "cardEffect  card mb-4 box-shadow" }, [
+              movie.poster_path
+                ? _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: {
+                      src: _vm.picUrl + movie.poster_path,
+                      alt: movie.title
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              !movie.poster_path
+                ? _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: {
+                      id: "noDataPic",
+                      src: __webpack_require__(/*! ../../assets/nodatapic.png */ "./resources/assets/nodatapic.png"),
+                      alt: movie.title
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
                   attrs: {
-                    src: _vm.picUrl + movie.poster_path,
-                    alt: movie.title
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#exampleModal" + movie.id
                   }
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            !movie.poster_path
-              ? _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: {
-                    src: "https://via.placeholder.com/200x300",
-                    alt: movie.title
-                  }
-                })
-              : _vm._e(),
+                },
+                [
+                  _vm._v(
+                    "\r\n          " +
+                      _vm._s(
+                        movie.title ||
+                          movie.original_title ||
+                          movie.name ||
+                          movie.original_name ||
+                          "Oops...no data"
+                      ) +
+                      "\r\n          "
+                  )
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c(
-              "button",
+              "div",
               {
-                staticClass: "btn btn-success",
+                staticClass: "modal fade show",
                 attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#exampleModal" + movie.id
+                  id: "exampleModal" + movie.id,
+                  tabindex: "-1",
+                  role: "dialog",
+                  "aria-labelledby": "exampleModalLongTitle",
+                  "aria-hidden": "true"
                 }
               },
               [
-                _vm._v(
-                  "\r\n          " +
-                    _vm._s(
-                      movie.title ||
-                        movie.original_title ||
-                        movie.name ||
-                        movie.original_name ||
-                        "Oops...no data"
-                    ) +
-                    "\r\n          "
+                _c(
+                  "div",
+                  { staticClass: "modal-dialog", attrs: { role: "document" } },
+                  [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "font-weight-bold modal-title",
+                            attrs: { id: "exampleModalLongTitle" }
+                          },
+                          [_vm._v(" " + _vm._s(movie.title || movie.name))]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0, true)
+                      ]),
+                      _vm._v(" "),
+                      movie.vote_average
+                        ? _c("div", { staticClass: "ml-2 mr-2 progress" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: " progress-bar bg-success",
+                                style: "width:" + movie.vote_average * 10 + "%",
+                                attrs: {
+                                  role: "progressbar",
+                                  "aria-valuenow": "75",
+                                  "aria-valuemin": "0",
+                                  "aria-valuemax": "100"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "Rating : " +
+                                    _vm._s(movie.vote_average * 10) +
+                                    " /100\r\n                        "
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _vm._v(
+                          "\r\n                    " +
+                            _vm._s(
+                              movie.overview || "Oops...data not found !"
+                            ) +
+                            "\r\n                  "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        { staticClass: "mr-2 text-right font-weight-bold" },
+                        [
+                          _vm._v(
+                            "Release date : " +
+                              _vm._s(
+                                movie.release_date ||
+                                  movie.first_air_date ||
+                                  "Oops...no data"
+                              )
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1, true)
+                    ])
+                  ]
                 )
               ]
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "modal fade show",
-              attrs: {
-                id: "exampleModal" + movie.id,
-                tabindex: "-1",
-                role: "dialog",
-                "aria-labelledby": "exampleModalLongTitle",
-                "aria-hidden": "true"
-              }
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "modal-dialog", attrs: { role: "document" } },
-                [
-                  _c("div", { staticClass: "modal-content" }, [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _c(
-                        "h5",
-                        {
-                          staticClass: "modal-title",
-                          attrs: { id: "exampleModalLongTitle" }
-                        },
-                        [_vm._v(" " + _vm._s(movie.title || movie.name))]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(0, true)
-                    ]),
-                    _vm._v(" "),
-                    movie.vote_average
-                      ? _c("div", { staticClass: "ml-2 mr-2 progress" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: " progress-bar bg-success",
-                              style: "width:" + movie.vote_average * 10 + "%",
-                              attrs: {
-                                role: "progressbar",
-                                "aria-valuenow": "75",
-                                "aria-valuemin": "0",
-                                "aria-valuemax": "100"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "Rating : " +
-                                  _vm._s(movie.vote_average * 10) +
-                                  " /100\r\n                        "
-                              )
-                            ]
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-body" }, [
-                      _vm._v(
-                        "\r\n                    " +
-                          _vm._s(movie.overview || "Oops...no data") +
-                          "\r\n                  "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "ml-2" }, [
-                      _vm._v(
-                        "Release date : " +
-                          _vm._s(
-                            movie.release_date ||
-                              movie.first_air_date ||
-                              "Oops...no data"
-                          )
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1, true)
-                  ])
-                ]
-              )
-            ]
-          )
-        ])
-      }),
-      0
-    )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -37954,10 +37965,10 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "navbar-brand col-sm-3 col-md-2 mr-0",
-              attrs: { href: "/" }
+              staticClass: "text-center navbar-brand col-sm-3 col-md-2 mr-0",
+              attrs: { href: "#" }
             },
-            [_vm._v("Movie Finder")]
+            [_vm._v("Finder")]
           ),
           _vm._v(" "),
           _c("input", {
@@ -37986,12 +37997,12 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("ul", { staticClass: "navbar-nav px-3" }, [
+          _c("ul", { staticClass: "mx-auto navbar-nav px-3" }, [
             _c("li", { staticClass: " nav-item text-nowrap" }, [
               _c(
                 "button",
                 {
-                  staticClass: "container btn-success",
+                  staticClass: "btn btn-success",
                   on: { click: _vm.searchMovies }
                 },
                 [_vm._v("Search")]
@@ -38066,7 +38077,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "nav",
-    { staticClass: "navbar navbar-expand-lg navbar navbar-dark bg-dark " },
+    { staticClass: " navbar navbar-expand-lg navbar navbar-dark bg-dark " },
     _vm._l(_vm.links, function(link) {
       return _c(
         "a",
@@ -53227,6 +53238,17 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "./resources/assets/nodatapic.png":
+/*!****************************************!*\
+  !*** ./resources/assets/nodatapic.png ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/nodatapic.png?c7389e66ad9383b6cd3091bba5ec58b4";
 
 /***/ }),
 
